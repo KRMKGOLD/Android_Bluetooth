@@ -32,4 +32,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    
+    // 꺾은선 그래프 라이브러리
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 }

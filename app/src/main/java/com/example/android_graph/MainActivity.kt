@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var lineDatas = ArrayList<Entry>()
+    private var labels = ArrayList<String>()
     private lateinit var lineDataSet: LineDataSet
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         lineDataSet.color = ContextCompat.getColor(this, R.color.black)
         lineDataSet.setCircleColor(ContextCompat.getColor(this, R.color.white))
 
+//        repeat(24) { labels.add(it.toString()) }
+//        lineChart.data = LineData(labels, lineDataSet)
+//        구버전에서는 위 코드로 라벨을 설정할 수 있었으나, 3 이상 버전으로 업그레이드 된 이후 변경이 불가능하다. 추가적으로 알아봐야 할듯.
         lineChart.data = LineData(lineDataSet)
 
     }

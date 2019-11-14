@@ -18,22 +18,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        lineDatas.add(Entry(1f, 2f))
-        lineDatas.add(Entry(2f, 3f))
-        lineDatas.add(Entry(3f, 9f))
-        lineDatas.add(Entry(4f, 4f))
-        lineDatas.add(Entry(5f, 1f))
-        lineDatas.add(Entry(6f, 8f))
-        lineDatas.add(Entry(7f, 1f))
+        lineDatas.add(Entry(7f, 0))
+        lineDatas.add(Entry(1f, 1))
+        lineDatas.add(Entry(4f, 2))
+        lineDatas.add(Entry(6f, 3))
+        lineDatas.add(Entry(9f, 4))
+        lineDatas.add(Entry(2f, 5))
+        lineDatas.add(Entry(8f, 6))
+        lineDatas.add(Entry(4f, 7))
 
         lineDataSet = LineDataSet(lineDatas, "Test 1")
         lineDataSet.color = ContextCompat.getColor(this, R.color.black)
         lineDataSet.setCircleColor(ContextCompat.getColor(this, R.color.white))
 
-//        repeat(24) { labels.add(it.toString()) }
-//        lineChart.data = LineData(labels, lineDataSet)
-//        구버전에서는 위 코드로 라벨을 설정할 수 있었으나, 3 이상 버전으로 업그레이드 된 이후 변경이 불가능하다. 추가적으로 알아봐야 할듯.
-        lineChart.data = LineData(lineDataSet)
+        repeat(8) { labels.add(it.toString()) }
+        lineChart.data = LineData(labels, lineDataSet)
 
     }
 }

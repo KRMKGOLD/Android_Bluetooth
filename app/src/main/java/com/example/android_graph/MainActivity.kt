@@ -1,11 +1,15 @@
 package com.example.android_graph
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.components.XAxis.XAxisPosition.*
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -29,10 +33,29 @@ class MainActivity : AppCompatActivity() {
 
         lineDataSet = LineDataSet(lineDatas, "Test 1")
         lineDataSet.color = ContextCompat.getColor(this, R.color.black)
-        lineDataSet.setCircleColor(ContextCompat.getColor(this, R.color.white))
+        lineDataSet.setCircleColor(ContextCompat.getColor(this, R.color.black))
+        lineDataSet.lineWidth = 2f
+        lineDataSet.circleSize = 3f
+        lineDataSet.valueTextSize = 10f
+        lineDataSet.setValueFormatter { value, _, _, _ -> (value.toInt()).toString() }
+
+        val xAxis = lineChart.xAxis
+        xAxis.position = BOTTOM
+        xAxis.textColor = Color.BLACK
+
+        val leftYAxis = lineChart.axisLeft
+        leftYAxis.textColor = Color.BLACK
+
+        val rightYAxis = lineChart.axisRight
+        rightYAxis.setDrawLabels(false)
+        rightYAxis.setDrawAxisLine(false)
+        rightYAxis.setDrawGridLines(false)
 
         repeat(8) { labels.add(it.toString()) }
         lineChart.data = LineData(labels, lineDataSet)
-
+        lineChart.setDescription("")
+        lineChart.setBackgroundColor(Color.WHITE)
+        lineChart.animateY(2000, Easing.EasingOption.EaseInCubic)
+        lineChart.invalidate()
     }
 }

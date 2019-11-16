@@ -60,14 +60,13 @@ class MainActivity : AppCompatActivity() {
         lineChart.setBackgroundColor(Color.WHITE)
         lineChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
             override fun onValueSelected(e: Entry?, dataSetIndex: Int, h: Highlight?) {
-                editText.setText(e?.`val`.toString())
-                editText2.setText(e?.xIndex.toString())
+                Toast.makeText(this@MainActivity, "(${e?.xIndex}, ${e!!.`val`.toInt()})", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected() { }
         })
 
-        lineChart.animateY(2000, Easing.EasingOption.EaseInCubic)
+        lineChart.animateY(1000, Easing.EasingOption.EaseInCubic)
         lineChart.invalidate()
     }
 }

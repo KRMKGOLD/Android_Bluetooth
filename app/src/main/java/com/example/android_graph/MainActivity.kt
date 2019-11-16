@@ -3,6 +3,7 @@ package com.example.android_graph
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.XAxis.XAxisPosition.*
@@ -10,6 +11,8 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -55,6 +58,15 @@ class MainActivity : AppCompatActivity() {
         lineChart.data = LineData(labels, lineDataSet)
         lineChart.setDescription("")
         lineChart.setBackgroundColor(Color.WHITE)
+        lineChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
+            override fun onValueSelected(e: Entry?, dataSetIndex: Int, h: Highlight?) {
+                editText.setText(e?.`val`.toString())
+                editText2.setText(e?.xIndex.toString())
+            }
+
+            override fun onNothingSelected() { }
+        })
+
         lineChart.animateY(2000, Easing.EasingOption.EaseInCubic)
         lineChart.invalidate()
     }
